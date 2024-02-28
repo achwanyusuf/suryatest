@@ -1,0 +1,365 @@
+openapi: 3.0.3
+info:
+  title: API Documentation Birthday Gift
+  description: |-
+    This api documentation is used for creating birthday gift for users
+  contact:
+    email: achwan
+  version: 1.0.1
+servers:
+  - url: 
+tags:
+  - name: user
+    description: endpoint to manage user
+paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: Create user
+      operationId: createUser
+      requestBody:
+        description: Create an user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+  /user/{id}:
+    put:
+      tags:
+        - user
+      summary: Update esisting user
+      description: Update an existing user by Id
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update an existing user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponse'
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: Delete user by Id
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+components:
+  schemas:
+    CreateUser:
+      required:
+        - fisrtname
+        - lastname
+        - bod
+        - local
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: john
+        lastname:
+          type: string
+          example: doe
+        bod:
+          type: string
+          format: date
+        local:
+          type: string
+          example: "+07:00"
+          enum: 
+            - "-12:00"
+            - "-11:00"
+            - "-10:00"
+            - "-09:00"
+            - "-08:00"
+            - "-07:00"
+            - "-06:00"
+            - "-05:00"
+            - "-04:00"
+            - "-03:00"
+            - "-02:00"
+            - "-01:00"
+            - "+00:00"
+            - "+01:00"
+            - "+02:00"
+            - "+03:00"
+            - "+04:00"
+            - "+05:00"
+            - "+06:00"
+            - "+07:00"
+            - "+08:00"
+            - "+09:00"
+            - "+10:00"
+            - "+11:00"
+            - "+12:00"
+            - "+13:00"
+        email:
+          type: string
+          example: john@mail.com
+      xml:
+        name: user
+    UpdateUser:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: john
+        lastname:
+          type: string
+          example: doe
+        bod:
+          type: string
+          format: date
+        local:
+          type: string
+          example: "+07:00"
+          enum: 
+            - "-12:00"
+            - "-11:00"
+            - "-10:00"
+            - "-09:00"
+            - "-08:00"
+            - "-07:00"
+            - "-06:00"
+            - "-05:00"
+            - "-04:00"
+            - "-03:00"
+            - "-02:00"
+            - "-01:00"
+            - "+00:00"
+            - "+01:00"
+            - "+02:00"
+            - "+03:00"
+            - "+04:00"
+            - "+05:00"
+            - "+06:00"
+            - "+07:00"
+            - "+08:00"
+            - "+09:00"
+            - "+10:00"
+            - "+11:00"
+            - "+12:00"
+            - "+13:00"
+        email:
+          type: string
+          example: john@mail.com
+      xml:
+        name: user
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        firstname:
+          type: string
+          example: john
+        lastname:
+          type: string
+          example: doe
+        bod:
+          type: string
+          format: date
+        local:
+          type: string
+          example: "+07:00"
+          enum: 
+            - "-12:00"
+            - "-11:00"
+            - "-10:00"
+            - "-09:00"
+            - "-08:00"
+            - "-07:00"
+            - "-06:00"
+            - "-05:00"
+            - "-04:00"
+            - "-03:00"
+            - "-02:00"
+            - "-01:00"
+            - "+00:00"
+            - "+01:00"
+            - "+02:00"
+            - "+03:00"
+            - "+04:00"
+            - "+05:00"
+            - "+06:00"
+            - "+07:00"
+            - "+08:00"
+            - "+09:00"
+            - "+10:00"
+            - "+11:00"
+            - "+12:00"
+            - "+13:00"
+        email:
+          type: string
+          example: john@mail.com
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: integer
+          example: 10
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: integer
+          example: 10
+        deletedAt:
+          type: string
+          format: date-time
+        deletedBy:
+          type: integer
+          example: 10
+      xml:
+        name: user
+    CreateUserResponse:
+      type: object
+      properties:
+        metadata:
+          properties:
+            method:
+              type: string
+              example: POST
+            path:
+              type: string
+              example: "api/user"
+            transactionID:
+              type: string
+              example: "clt4k8cdb00006zzaclqvem1e"
+            timestamp:
+              type: string
+              example: "2024-02-27T16:06:20Z"
+        data:
+          $ref: '#/components/schemas/User'
+        message:
+          type: string
+        status:
+          type: number
+      xml:
+        name: '##default'
+    UpdateUserResponse:
+      type: object
+      properties:
+        metadata:
+          properties:
+            method:
+              type: string
+              example: PUT
+            path:
+              type: string
+              example: "api/user/1"
+            transactionID:
+              type: string
+              example: "clt4k8cdb00006zzaclqvem1e"
+            timestamp:
+              type: string
+              example: "2024-02-27T16:06:20Z"
+        data:
+          $ref: '#/components/schemas/User'
+        message:
+          type: string
+        status:
+          type: number
+      xml:
+        name: '##default'
+    DeleteUserResponse:
+      type: object
+      properties:
+        metadata:
+          properties:
+            method:
+              type: string
+              example: DELETE
+            path:
+              type: string
+              example: "api/user/1"
+            transactionID:
+              type: string
+              example: "clt4k8cdb00006zzaclqvem1e"
+            timestamp:
+              type: string
+              example: "2024-02-27T16:06:20Z"
+        data:
+          properties:
+            id:
+              type: number
+        message:
+          type: string
+        status:
+          type: number
+      xml:
+        name: '##default'
